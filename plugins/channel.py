@@ -71,11 +71,14 @@ async def send_movie_updates(bot, file_name, caption, file_id):
             if lang.lower() in caption.lower():
                 language += f"{lang}, "
         language = language.strip(", ") or "Not Idea"
+        
         movie_name = await movie_name_format(file_name)    
         if movie_name in processed_movies:
             return 
         processed_movies.add(movie_name)    
+        
         poster_url = await get_imdb(movie_name)
+        
         caption_message = (
             f"🎬 <b>Title:</b> <code>{title or movie_name}</code>\n"
             f"🗂 <b>Genres:</b> {genres or 'Unknown'}\n"
